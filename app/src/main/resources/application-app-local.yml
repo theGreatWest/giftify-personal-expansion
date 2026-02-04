@@ -35,3 +35,8 @@ logging:
     org.hibernate.orm.jdbc.bind: trace
     org.springframework.transaction: trace
     org.springframework.jdbc.core: trace
+
+management:
+  health:
+    elasticsearch:
+      enabled: false # elasticsearch 구현 시 활성화
