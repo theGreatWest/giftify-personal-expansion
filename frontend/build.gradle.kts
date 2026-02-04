@@ -26,7 +26,7 @@ tasks.register<com.github.gradle.node.npm.task.NpmTask>("npmBuild") {
 tasks.register<Copy>("copyFrontendToApp") {
     dependsOn("npmBuild")
     from(frontendDir.resolve("dist"))
-    into(project(":app").projectDir.resolve("src/main/resources/static"))
+    into(project(":backend:app").layout.buildDirectory.dir("resources/main/static"))
 }
 
 tasks.named("build") {
@@ -35,6 +35,6 @@ tasks.named("build") {
 
 tasks.named("clean") {
     doFirst {
-        delete(project(":app").projectDir.resolve("src/main/resources/static"))
+        delete(project(":backend:app").layout.buildDirectory.dir("resources/main/static"))
     }
 }

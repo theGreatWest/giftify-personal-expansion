@@ -1,6 +1,6 @@
 dependencies {
-    implementation(project(":common"))
-    implementation(project(":core"))
+    implementation(project(":backend:common"))
+    implementation(project(":backend:core"))
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("org.postgresql:postgresql")    // dev, prod
