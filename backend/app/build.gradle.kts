@@ -16,3 +16,7 @@ dependencies {
 springBoot {
     mainClass.set("com.giftify.app.GiftifyApplication")
 }
+
+tasks.named<ProcessResources>("processResources") {
+    dependsOn(":frontend:copyFrontendToApp")
+}
