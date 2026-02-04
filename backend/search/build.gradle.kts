@@ -1,7 +1,7 @@
 dependencies {
-    implementation(project(":common"))
-    implementation(project(":core"))
-    implementation(project(":infra"))
+    implementation(project(":backend:common"))
+    implementation(project(":backend:core"))
+    implementation(project(":backend:infra"))
 
     // ElasticSearch
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")

@@ -54,7 +54,7 @@ subprojects {
         testAnnotationProcessor("org.projectlombok:lombok")
     }
 
-    if (project.name != "app") {
+    if (project.path != ":backend:app") {
         tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
             enabled = false
         }
