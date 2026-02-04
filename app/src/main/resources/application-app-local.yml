@@ -26,7 +26,7 @@ spring:
 
 server:
   servlet:
-    context-path: /giftify
+    context-path: /
 
 logging:
   level:
