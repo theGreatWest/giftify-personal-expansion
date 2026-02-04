@@ -1,4 +1,5 @@
 server:
+  port: ${SERVER_PORT:8080}
   servlet:
     context-path: /
 
@@ -38,3 +39,22 @@ spring:
         - search-prod
         - infra-prod
         - common-prod
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL_ROOT:info}
+
+custom:
+  dev:
+    cookieDomain: localhost
+    frontUrl: "http://${custom.dev.cookieDomain}:5173"
+    backUrl: "http://${custom.dev.cookieDomain}:${server.port}"
+  prod:
+    cookieDomain: giftify.yjkim.store
+    frontUrl: "https://www.${custom.prod.cookieDomain}"
+    backUrl: "https://api.${custom.prod.cookieDomain}"
+  site:
+    name: "giftify"
+    cookieDomain: "${custom.dev.cookieDomain}"
+    frontUrl: "${custom.dev.frontUrl}"
+    backUrl: "${custom.dev.backUrl}"

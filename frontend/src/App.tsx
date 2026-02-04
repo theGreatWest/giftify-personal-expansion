@@ -5,6 +5,9 @@ import Signup from './pages/Signup';
 import './index.css';
 
 function App() {
+  console.log(import.meta.env.VITE_FRONT_BASE_URL);
+  console.log(import.meta.env.VITE_API_BASE_URL);
+
   return (
     <Router>
       <div className="App">
