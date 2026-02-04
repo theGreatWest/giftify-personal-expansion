@@ -5,11 +5,8 @@ import Signup from './pages/Signup';
 import './index.css';
 
 function App() {
-  const isVercel = import.meta.env.VITE_VERCEL === 'true' || window.location.hostname.includes('vercel.app');
-  const basename = isVercel ? '' : '/giftify';
-
   return (
-    <Router basename={basename}>
+    <Router>
       <div className="App">
         <Navbar />
         <main className="container">
