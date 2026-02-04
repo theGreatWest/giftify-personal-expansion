@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /giftify
+    context-path: /
 
 spring:
   config:
