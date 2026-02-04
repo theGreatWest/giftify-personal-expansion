@@ -4,7 +4,7 @@ on:
   push:
     branches: [ dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ dev, main ]
 
 jobs:
   build:
@@ -13,6 +13,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate PR source branch
+        if: github.event_name == 'pull_request'
+        run: |
+          if [[ "${{ github.base_ref }}" == "main" && "${{ github.head_ref }}" != "dev" ]]; then
+            echo "❌ main 브랜치는 dev 브랜치에서만 PR 가능합니다."
+            exit 1
+          fi
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
