@@ -20,10 +20,8 @@ COPY backend/payment backend/payment
 COPY backend/search backend/search
 COPY backend/settlement backend/settlement
 
-# 3. 이제 Gradle 실행 가능
-RUN ./gradlew dependencies --no-daemon
-
-# 4. 빌드 (실행 모듈만)
+# 3. 실행 모듈만 기준으로 Gradle 실행
+RUN ./gradlew :backend:app:dependencies --no-daemon
 RUN ./gradlew :backend:app:build -x test --no-daemon
 
 
