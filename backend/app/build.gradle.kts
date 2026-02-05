@@ -18,5 +18,8 @@ springBoot {
 }
 
 tasks.named<ProcessResources>("processResources") {
-    dependsOn(":frontend:copyFrontendToApp")
+    val frontendProject = findProject(":frontend")
+    if (frontendProject != null) {
+        dependsOn(":frontend:copyFrontendToApp")
+    }
 }
