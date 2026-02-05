@@ -28,6 +28,11 @@ RUN ./gradlew :backend:app:build -x test --no-daemon
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 
+# 4. .env 내용을 ENV로 정의 (컨테이너 안에서 yml이 읽을 수 있도록)
+ENV DOCKER_DB_URL=jdbc:postgresql://43.202.50.86:15432/giftify_db
+ENV DB_USERNAME=giftify
+ENV DB_PASSWORD=1234
+
 # 빌드된 backend/app JAR만 복사
 COPY --from=builder /build/backend/app/build/libs/*.jar app.jar
 
