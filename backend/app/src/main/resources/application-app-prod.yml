@@ -6,7 +6,6 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
     open-in-view: false
@@ -17,7 +16,7 @@ spring:
 
 logging:
   level:
-    root: warn
+    root: info
     org.springframework.transaction: info
 
 custom:
@@ -26,3 +25,7 @@ custom:
     cookieDomain: "${custom.prod.cookieDomain}"
     frontUrl: "${custom.prod.frontUrl}"
     backUrl: "${custom.prod.backUrl}"
+management:
+  health:
+    elasticsearch:
+      enabled: false
