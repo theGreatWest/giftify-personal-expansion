@@ -79,6 +79,9 @@ Giftify는 카카오톡 선물하기와 같은 기존 선물 경험에서 느꼈
 - 조회 성능 최적화를 위한 Elasticsearch 적용
 
 > 📌 자세한 아키텍처 설계는  
-> [`docs/architecture_overview.md`](./docs/architecture_overview.md) 문서를 참고해주세요.
+> [`architecture_overview`](docs/architecture/architecture_overview.md) 문서를 참고해주세요.
+
+> 📌 자세한 수동 배포 설계는  
+> [`backend_deployment`](docs/architecture/backend_deployment.md), [`frontend-deployment`](docs/architecture/frontend-deployment.md) 문서를 참고해주세요.
 
 ---
