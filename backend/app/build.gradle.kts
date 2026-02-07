@@ -17,6 +17,10 @@ springBoot {
     mainClass.set("com.giftify.app.GiftifyApplication")
 }
 
+tasks.bootRun {
+    workingDir = rootProject.projectDir
+}
+
 tasks.named<ProcessResources>("processResources") {
     val frontendProject = findProject(":frontend")
     if (frontendProject != null) {

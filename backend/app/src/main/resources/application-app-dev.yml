@@ -23,3 +23,7 @@ logging:
     root: info
     org.hibernate.SQL: debug
     org.springframework.transaction: debug
+management:
+  health:
+    elasticsearch:
+      enabled: false
