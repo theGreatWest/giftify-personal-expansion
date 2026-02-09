@@ -38,6 +38,8 @@ bin/
 ### Environment ###
 .env
 .env.*
+!.env.example
+!.env.production
 
 ### macOS ###
 .DS_Store
