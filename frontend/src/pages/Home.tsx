@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     
     try {
       const res = await fetch(`${apiUrl}/api/test`, {
