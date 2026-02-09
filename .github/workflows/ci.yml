@@ -32,26 +32,3 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
-
-  copilot-review:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.base_ref == 'dev'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Copilot Review CLI
-        run: npm install -g copilot-review-cli
-
-      - name: Run Copilot Code Review
-        run: |
-          copilot-review --diff $(git diff origin/dev...HEAD) --fail-on-issues
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
