@@ -13,6 +13,7 @@ spring:
   profiles:
     group:
       local:
+        - app-local
         - member-local
         - auth-local
         - search-local
@@ -23,6 +24,7 @@ spring:
         - notification-local
         - common-local
       dev:
+        - app-dev
         - member-dev
         - auth-dev
         - search-dev
@@ -33,6 +35,7 @@ spring:
         - notification-dev
         - common-dev
       prod:
+        - app-prod
         - member-prod
         - auth-prod
         - search-prod
