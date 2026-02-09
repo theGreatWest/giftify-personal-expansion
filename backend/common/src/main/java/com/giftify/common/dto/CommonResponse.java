@@ -22,6 +22,10 @@ public class CommonResponse<T> {
         return new CommonResponse<>(false, null, new ErrorResponse(code, message));
     }
 
+    public static <T> CommonResponse<T> error(String code, String message, T data) {
+        return new CommonResponse<>(false, data, new ErrorResponse(code, message));
+    }
+
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
