@@ -13,31 +13,34 @@ spring:
   profiles:
     group:
       local:
-        - app-local
-        - core-local
-        - payment-local
-        - funding-local
-        - settlement-local
+        - member-local
+        - auth-local
         - search-local
-        - infra-local
+        - product-local
+        - funding-local
+        - order-local
+        - payment-local
+        - notification-local
         - common-local
       dev:
-        - app-dev
-        - core-dev
-        - payment-dev
-        - funding-dev
-        - settlement-dev
+        - member-dev
+        - auth-dev
         - search-dev
-        - infra-dev
+        - product-dev
+        - funding-dev
+        - order-dev
+        - payment-dev
+        - notification-dev
         - common-dev
       prod:
-        - app-prod
-        - core-prod
-        - payment-prod
-        - funding-prod
-        - settlement-prod
+        - member-prod
+        - auth-prod
         - search-prod
-        - infra-prod
+        - product-prod
+        - funding-prod
+        - order-prod
+        - payment-prod
+        - notification-prod
         - common-prod
 
 logging:

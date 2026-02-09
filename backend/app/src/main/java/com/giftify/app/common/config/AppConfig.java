@@ -1,4 +1,4 @@
-package com.giftify.app.config;
+package com.giftify.app.common.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,16 +16,16 @@ public class AppConfig {
 
     @Value("${custom.site.frontUrl}")
     public void setSiteFrontUrl(String siteFrontUrl) {
-        this.siteFrontUrl = siteFrontUrl;
+        AppConfig.siteFrontUrl = siteFrontUrl;
     }
 
     @Value("${custom.site.backUrl}")
     public void setSiteBackUrl(String siteBackUrl) {
-        this.siteBackUrl = siteBackUrl;
+        AppConfig.siteBackUrl = siteBackUrl;
     }
 
     @Value("${custom.site.cookieDomain}")
     public void setSiteCookieDomain(String siteCookieDomain) {
-        this.siteCookieDomain = siteCookieDomain;
+        AppConfig.siteCookieDomain = siteCookieDomain;
     }
 }

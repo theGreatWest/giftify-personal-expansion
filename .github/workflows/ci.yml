@@ -9,10 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch origin dev
+        run: git fetch origin dev
 
       - name: Validate PR source branch
         if: github.event_name == 'pull_request'

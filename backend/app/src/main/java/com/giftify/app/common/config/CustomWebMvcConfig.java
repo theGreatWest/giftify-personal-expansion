@@ -1,4 +1,4 @@
-package com.giftify.app.config;
+package com.giftify.app.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
