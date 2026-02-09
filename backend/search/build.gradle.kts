@@ -1,9 +1,11 @@
 dependencies {
     implementation(project(":backend:common"))
-    implementation(project(":backend:core"))
-    implementation(project(":backend:infra"))
+    implementation(project(":backend:member"))
 
-    // ElasticSearch
+    // Spring Boot Starter
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
-    implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.10")
+    implementation("org.springframework:spring-context")
+
+    // Optional: 다른 Elasticsearch 관련 코드 필요 시 아래 추가
+    // implementation("org.elasticsearch.client:elasticsearch-java:8.11.0") // 최신 Java REST Client
 }
