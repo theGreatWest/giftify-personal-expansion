@@ -1,4 +1,1 @@
-dependencies {
-    implementation(project(":backend:common"))
-    implementation(project(":backend:core"))
-}
+dependencies { implementation(project(":backend:common")); implementation("org.springframework:spring-context"); implementation("jakarta.persistence:jakarta.persistence-api") }

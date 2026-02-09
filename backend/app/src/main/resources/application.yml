@@ -15,27 +15,18 @@ spring:
       local:
         - app-local
         - core-local
-        - payment-local
-        - funding-local
-        - settlement-local
         - search-local
         - infra-local
         - common-local
       dev:
         - app-dev
         - core-dev
-        - payment-dev
-        - funding-dev
-        - settlement-dev
         - search-dev
         - infra-dev
         - common-dev
       prod:
         - app-prod
         - core-prod
-        - payment-prod
-        - funding-prod
-        - settlement-prod
         - search-prod
         - infra-prod
         - common-prod
