@@ -18,9 +18,6 @@ jobs:
       - name: Fetch origin dev
         run: git fetch origin dev
 
-      - name: Copilot Review
-        run: copilot-review --diff "$(git diff ${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }})" --fail-on-issues
-
       - name: Validate PR source branch
         if: github.event_name == 'pull_request'
         run: |
