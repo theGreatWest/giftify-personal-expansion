@@ -12,7 +12,8 @@ public enum MemberErrorCode implements ErrorCode {
     CANNOT_CHANGE_PASSWORD("M006", "비밀번호 변경이 불가능한 상태입니다."),
     CANNOT_LOGIN("M007", "로그인 불가능한 상태입니다."),
     DUPLICATED_EMAIL("M008", "이미 존재하는 이메일입니다."),
-    DUPLICATED_NICKNAME("M009", "이미 존재하는 닉네임입니다.");
+    DUPLICATED_NICKNAME("M009", "이미 존재하는 닉네임입니다."),
+    MEMBER_NOT_FOUND("M010", "회원을 찾을 수 없습니다.");
 
     private final String code;
     private final String message;

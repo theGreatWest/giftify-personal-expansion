@@ -1,9 +1,9 @@
 package com.giftify.member.application.service;
 
+import com.giftify.member.application.port.in.MemberUseCase;
 import com.giftify.member.core.domain.Member;
 import com.giftify.member.core.exception.MemberDomainException;
 import com.giftify.member.core.exception.MemberErrorCode;
-import com.giftify.member.application.port.in.MemberUseCase;
 import com.giftify.member.application.port.in.RegisterMemberCommand;
 import com.giftify.member.application.port.out.MemberRepositoryPort;
 import com.giftify.member.application.port.out.PasswordEncoderPort;
@@ -51,5 +51,17 @@ public class MemberService implements MemberUseCase {
 
         Member savedMember = memberRepositoryPort.save(member);
         return savedMember.getId();
+    }
+
+    @Override
+    public Member findById(Long id) {
+        return memberRepositoryPort.findById(id)
+                .orElseThrow(() -> new MemberDomainException(MemberErrorCode.MEMBER_NOT_FOUND));
+    }
+
+    @Override
+    public Member findByEmail(String email) {
+        return memberRepositoryPort.findByEmail(email)
+                .orElseThrow(() -> new MemberDomainException(MemberErrorCode.MEMBER_NOT_FOUND));
     }
 }
