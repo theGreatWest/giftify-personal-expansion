@@ -15,7 +15,7 @@ public class Seller  extends IdentifiableDomain<Long> {
     String sellerName;             // 스토어명 / 판매자명
     SellerStatus status;           // PENDING(승인대기), ACTIVE(승인완료), SUSPENDED(정지), REJECTED(반려)
 
-    // 사업자 정보 (nullable: 개인사업자인 경우)
+    // 사업자 정보 (필수)
     String businessNumber;         // 사업자등록번호
     String businessName;           // 상호명
     String representativeName;     // 대표자명
@@ -35,17 +35,15 @@ public class Seller  extends IdentifiableDomain<Long> {
     LocalDateTime createdAt;       // 판매자 신청 시점
     LocalDateTime updatedAt;
 
+    // 생성자
+    // 신규 등록
     private Seller(
             Long memberId,
             SellerType type,
             String sellerName,
-
-            // 정산 정보 (필수)
             BankCode bankCode,
             String accountNumber,
             String accountHolder,
-
-            // 사업자 정보 (nullable)
             String businessNumber,
             String businessName,
             String representativeName,
@@ -61,16 +59,14 @@ public class Seller  extends IdentifiableDomain<Long> {
                         accountHolder != null && !accountHolder.isBlank(),
                 new SellerDomainException(SellerErrorCode.INVALID_SETTLEMENT_INFO));
 
-        // 개인 사업자가 아닐 경우 사업자 정보 필수
-        if (type.isBusiness()) {
-            validate(
-                    businessNumber != null &&
-                            businessName != null &&
-                            representativeName != null &&
-                            businessAddress != null,
-                    new SellerDomainException(SellerErrorCode.INVALID_BUSINESS_INFO)
-            );
-        }
+        // 모든 판매자는 사업자 정보 필수
+        validate(
+                businessNumber != null && !businessNumber.isBlank() &&
+                        businessName != null && !businessName.isBlank() &&
+                        representativeName != null && !representativeName.isBlank() &&
+                        businessAddress != null && !businessAddress.isBlank(),
+                new SellerDomainException(SellerErrorCode.BUSINESS_INFO_REQUIRED)
+        );
 
         this.memberId = memberId;
         this.type = type;
@@ -93,6 +89,7 @@ public class Seller  extends IdentifiableDomain<Long> {
         this.updatedAt = this.createdAt;
     }
 
+    // 생성자
     // DB 복원용
     private Seller(
             Long id,
@@ -132,16 +129,15 @@ public class Seller  extends IdentifiableDomain<Long> {
         this.updatedAt = updatedAt;
     }
 
+    // 신규 등록
     // [프론트엔드] 판매자가 정산 정책에 동의하지 않는다면, 판매자 등록이 불가능하게 강제
     public static Seller create(
             Long memberId,
             SellerType type,
             String sellerName,
-
             BankCode bankCode,
             String accountNumber,
             String accountHolder,
-
             String businessNumber,
             String businessName,
             String representativeName,
@@ -151,11 +147,9 @@ public class Seller  extends IdentifiableDomain<Long> {
                 memberId,
                 type,
                 sellerName,
-
                 bankCode,
                 accountNumber,
                 accountHolder,
-
                 businessNumber,
                 businessName,
                 representativeName,
@@ -163,7 +157,7 @@ public class Seller  extends IdentifiableDomain<Long> {
         );
     }
 
-    // DB 복원용
+    // Mapper에서의 DB 복원용
     public static Seller reconstruct(
             Long id,
             Long memberId,
@@ -257,10 +251,8 @@ public class Seller  extends IdentifiableDomain<Long> {
                 new SellerDomainException(SellerErrorCode.INVALID_STATUS_TRANSITION));
 
         validate(bankCode != null &&
-                        accountNumber != null &&
-                        !accountNumber.isBlank() &&
-                        accountHolder != null &&
-                        !accountHolder.isBlank(),
+                        accountNumber != null && !accountNumber.isBlank() &&
+                        accountHolder != null && !accountHolder.isBlank(),
                 new SellerDomainException(SellerErrorCode.INVALID_SETTLEMENT_INFO));
 
         this.bankCode = bankCode;
@@ -275,18 +267,15 @@ public class Seller  extends IdentifiableDomain<Long> {
             String representativeName,
             String businessAddress
     ) {
-        validate(type.isBusiness(),
-                new SellerDomainException(SellerErrorCode.BUSINESS_INFO_NOT_ALLOWED));
-
         validate(status == SellerStatus.PENDING,
                 new SellerDomainException(SellerErrorCode.INVALID_STATUS_TRANSITION));
 
         validate(
-                businessNumber != null &&
-                        businessName != null &&
-                        representativeName != null &&
-                        businessAddress != null,
-                new SellerDomainException(SellerErrorCode.INVALID_BUSINESS_INFO)
+                businessNumber != null && !businessNumber.isBlank() &&
+                        businessName != null && !businessName.isBlank() &&
+                        representativeName != null && !representativeName.isBlank() &&
+                        businessAddress != null && !businessAddress.isBlank(),
+                new SellerDomainException(SellerErrorCode.BUSINESS_INFO_REQUIRED)
         );
 
         this.businessNumber = businessNumber;
@@ -301,15 +290,13 @@ public class Seller  extends IdentifiableDomain<Long> {
         validate(settlementAgreement,
                 new SellerDomainException(SellerErrorCode.SETTLEMENT_AGREEMENT_REQUIRED));
 
-        if (type.isBusiness()) {
-            validate(
-                    businessNumber != null &&
-                            businessName != null &&
-                            representativeName != null &&
-                            businessAddress != null,
-                    new SellerDomainException(SellerErrorCode.BUSINESS_INFO_REQUIRED)
-            );
-        }
+        validate(
+                businessNumber != null && !businessNumber.isBlank() &&
+                        businessName != null && !businessName.isBlank() &&
+                        representativeName != null && !representativeName.isBlank() &&
+                        businessAddress != null && !businessAddress.isBlank(),
+                new SellerDomainException(SellerErrorCode.BUSINESS_INFO_REQUIRED)
+        );
     }
 
     // Getters
