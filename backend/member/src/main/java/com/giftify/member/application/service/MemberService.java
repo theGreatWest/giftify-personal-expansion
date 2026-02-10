@@ -1,5 +1,7 @@
 package com.giftify.member.application.service;
 
+import com.giftify.member.application.policy.SignupContext;
+import com.giftify.member.application.policy.SignupPolicyExecutor;
 import com.giftify.member.application.port.in.MemberUseCase;
 import com.giftify.member.core.domain.Member;
 import com.giftify.member.core.exception.MemberDomainException;
@@ -20,9 +22,21 @@ public class MemberService implements MemberUseCase {
     private final PasswordEncoderPort passwordEncoderPort;
     private final MemberRepositoryPort memberRepositoryPort;
 
+    private final SignupPolicyExecutor signupPolicyExecutor;
+
     @Override
     @Transactional
     public Long registerMember(RegisterMemberCommand command) {
+        // signupContext로 변환 후 policy정책 위임
+        SignupContext signupContext = SignupContext.from(command);
+
+        // 회원가입 정책 검증
+        // 1. 비밀번호 조건 충족 여부
+        // 2. 닉네임 중복 검사
+        // 3. 이메일 인증 여부, 이메일 중복 검사
+        // 4. 휴대폰 번호 인증 여부
+        signupPolicyExecutor.executePolicies(signupContext);
+
         // 이메일 중복 확인
         if (memberRepositoryPort.existsByEmail(command.email())) {
             log.debug("이미 존재하는 이메일입니다. email={}", command.email());
