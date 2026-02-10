@@ -1,5 +1,6 @@
 package com.giftify.member.application.service;
 
+import com.giftify.member.application.policy.SignupPolicyExecutor;
 import com.giftify.member.application.port.in.RegisterMemberCommand;
 import com.giftify.member.application.port.out.MemberRepositoryPort;
 import com.giftify.member.application.port.out.PasswordEncoderPort;
@@ -27,6 +28,9 @@ class MemberServiceTest {
 
     @Mock
     private MemberRepositoryPort memberRepositoryPort;
+
+    @Mock
+    private SignupPolicyExecutor signupPolicyExecutor;
 
     @InjectMocks
     private MemberService memberService;
