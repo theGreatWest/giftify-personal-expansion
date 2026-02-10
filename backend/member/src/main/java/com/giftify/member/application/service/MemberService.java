@@ -78,4 +78,9 @@ public class MemberService implements MemberUseCase {
         return memberRepositoryPort.findByEmail(email)
                 .orElseThrow(() -> new MemberDomainException(MemberErrorCode.MEMBER_NOT_FOUND));
     }
+
+    @Override
+    public boolean existsByNickname(String nickname) {
+        return memberRepositoryPort.existsByNickname(nickname);
+    }
 }
