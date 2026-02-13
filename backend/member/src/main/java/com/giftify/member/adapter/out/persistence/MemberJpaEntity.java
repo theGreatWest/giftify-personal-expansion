@@ -21,10 +21,18 @@ public class MemberJpaEntity extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    private String name;
-    private String phone;
-    private String address;
+    @Column(nullable = false)
     private String birthDate;
+
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
+    private String address;
+
+    @Column(nullable = false)
+    private String name;
+
     private String profileImage;
 
     @Enumerated(EnumType.STRING)

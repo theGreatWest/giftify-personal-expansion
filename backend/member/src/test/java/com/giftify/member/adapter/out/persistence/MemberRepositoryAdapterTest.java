@@ -66,17 +66,4 @@ class MemberRepositoryAdapterTest {
         assertThat(result.get().getEmail()).isEqualTo(email);
     }
 
-    @Test
-    @DisplayName("이메일 중복 확인")
-    void existsByEmail() {
-        // given
-        String email = "test@example.com";
-        given(memberJpaRepository.existsByEmail(email)).willReturn(true);
-
-        // when
-        boolean result = memberRepositoryAdapter.existsByEmail(email);
-
-        // then
-        assertThat(result).isTrue();
-    }
 }

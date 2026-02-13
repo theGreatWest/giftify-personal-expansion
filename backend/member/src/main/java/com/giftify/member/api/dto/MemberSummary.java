@@ -8,6 +8,8 @@ public record MemberSummary(
         Long id,
         String email,
         String nickname,
+        String address,
+        String phone,
         MemberStatus status,
         MemberRole role,
         boolean isSeller
@@ -17,6 +19,8 @@ public record MemberSummary(
                 member.getId(),
                 member.getEmail(),
                 member.getNickname(),
+                member.getAddress(),
+                member.getPhone(),
                 member.getStatus(),
                 member.getRole(),
                 member.isSeller()

@@ -13,7 +13,8 @@ public enum MemberErrorCode implements ErrorCode {
     CANNOT_LOGIN("M007", "로그인 불가능한 상태입니다."),
     DUPLICATED_EMAIL("M008", "이미 존재하는 이메일입니다."),
     DUPLICATED_NICKNAME("M009", "이미 존재하는 닉네임입니다."),
-    MEMBER_NOT_FOUND("M010", "회원을 찾을 수 없습니다.");
+    MEMBER_NOT_FOUND("M010", "회원을 찾을 수 없습니다."),
+    WEAK_PASSWORD("M011", "비밀번호는 영어 대문자, 소문자, 특수문자를 각각 1자 이상 포함해야 합니다.");
 
     private final String code;
     private final String message;
