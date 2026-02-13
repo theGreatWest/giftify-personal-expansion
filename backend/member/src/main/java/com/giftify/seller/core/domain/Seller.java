@@ -286,10 +286,8 @@ public class Seller  extends IdentifiableDomain<Long> {
     }
 
     // 승인 전 다시 한 번 상태 검증
+    // 정산 약관 동의는 프론트엔드에서 미동의 시 등록 버튼을 비활성화하여 강제하므로, 백엔드 도달 시 항상 true
     private void validateBeforeApprove() {
-        validate(settlementAgreement,
-                new SellerDomainException(SellerErrorCode.SETTLEMENT_AGREEMENT_REQUIRED));
-
         validate(
                 businessNumber != null && !businessNumber.isBlank() &&
                         businessName != null && !businessName.isBlank() &&

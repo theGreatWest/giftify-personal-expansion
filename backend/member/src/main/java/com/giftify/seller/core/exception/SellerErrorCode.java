@@ -16,7 +16,6 @@ public enum SellerErrorCode implements ErrorCode {
     SELLER_ALREADY_APPROVED("S013", "이미 승인된 판매자입니다."),
 
     // 승인 / 정책
-    SETTLEMENT_AGREEMENT_REQUIRED("S020", "정산 약관에 동의하지 않은 판매자는 승인할 수 없습니다."),
     BUSINESS_INFO_REQUIRED("S021", "사업자 판매자는 사업자 정보가 필수입니다."),
 
     // 사업자 정보
@@ -29,8 +28,7 @@ public enum SellerErrorCode implements ErrorCode {
 
     // 조회 / 존재 여부
     SELLER_NOT_FOUND("S050", "판매자를 찾을 수 없습니다."),
-    DUPLICATED_SELLER("S051", "이미 판매자로 등록된 회원입니다."),
-    ALREADY_AGREED("S052", "이미 정산 약관에 동의한 상태입니다.");
+    DUPLICATED_SELLER("S051", "이미 판매자로 등록된 회원입니다.");
 
     private final String code;
     private final String message;
