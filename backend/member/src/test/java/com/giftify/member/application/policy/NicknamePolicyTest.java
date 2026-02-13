@@ -1,6 +1,6 @@
 package com.giftify.member.application.policy;
 
-import com.giftify.member.application.port.out.MemberRepositoryPort;
+import com.giftify.member.application.port.out.MemberQueryPort;
 import com.giftify.member.core.exception.MemberBusinessException;
 import com.giftify.member.core.exception.MemberErrorCode;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.given;
 class NicknamePolicyTest {
 
     @Mock
-    private MemberRepositoryPort memberRepositoryPort;
+    private MemberQueryPort memberQueryPort;
 
     @InjectMocks
     private NicknamePolicy nicknamePolicy;
@@ -28,7 +28,7 @@ class NicknamePolicyTest {
     void validate_success() {
         // given
         SignupContext context = new SignupContext("newNickname", "Password@123", "test@example.com", "010-1234-5678");
-        given(memberRepositoryPort.existsByNickname("newNickname")).willReturn(false);
+        given(memberQueryPort.existsByNickname("newNickname")).willReturn(false);
 
         // when & then
         assertThatNoException().isThrownBy(() -> nicknamePolicy.validate(context));
@@ -39,7 +39,7 @@ class NicknamePolicyTest {
     void validate_fail_duplicateNickname() {
         // given
         SignupContext context = new SignupContext("duplicate", "Password@123", "test@example.com", "010-1234-5678");
-        given(memberRepositoryPort.existsByNickname("duplicate")).willReturn(true);
+        given(memberQueryPort.existsByNickname("duplicate")).willReturn(true);
 
         // when & then
         assertThatThrownBy(() -> nicknamePolicy.validate(context))

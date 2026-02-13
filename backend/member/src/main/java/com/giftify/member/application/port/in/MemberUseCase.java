@@ -6,5 +6,4 @@ public interface MemberUseCase {
     Long registerMember(RegisterMemberCommand command);
     Member findById(Long id);
     Member findByEmail(String email);
-    boolean existsByNickname(String nickname);
 }

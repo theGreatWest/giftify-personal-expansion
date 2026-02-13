@@ -13,7 +13,4 @@ public interface MemberRepositoryPort {
     Optional<Member> findById(Long id);
     Optional<Member> findByEmail(String email);
     Optional<Member> findByPhone(String phone);
-
-    boolean existsByEmail(String email);
-    boolean existsByNickname(String nickname);
 }

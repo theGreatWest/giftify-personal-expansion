@@ -31,23 +31,11 @@ public class MemberService implements MemberUseCase {
         SignupContext signupContext = SignupContext.from(command);
 
         // 회원가입 정책 검증
-        // 1. 비밀번호 조건 충족 여부
-        // 2. 닉네임 중복 검사
-        // 3. 이메일 인증 여부, 이메일 중복 검사
+        // ✅ 비밀번호 조건 충족 여부
+        // ✅ 닉네임 중복 검사
+        // ▶️ 이메일 인증 여부, 이메일 중복 검사
         // 4. 휴대폰 번호 인증 여부
         signupPolicyExecutor.executePolicies(signupContext);
-
-        // 이메일 중복 확인
-        if (memberRepositoryPort.existsByEmail(command.email())) {
-            log.debug("이미 존재하는 이메일입니다. email={}", command.email());
-            throw new MemberDomainException(MemberErrorCode.DUPLICATED_EMAIL);
-        }
-
-        // 닉네임 중복 확인
-        if (memberRepositoryPort.existsByNickname(command.nickname())) {
-            log.debug("이미 존재하는 닉네임입니다. nickname={}", command.nickname());
-            throw new MemberDomainException(MemberErrorCode.DUPLICATED_NICKNAME);
-        }
 
         String encodedPassword = passwordEncoderPort.encode(command.password());
 
@@ -77,10 +65,5 @@ public class MemberService implements MemberUseCase {
     public Member findByEmail(String email) {
         return memberRepositoryPort.findByEmail(email)
                 .orElseThrow(() -> new MemberDomainException(MemberErrorCode.MEMBER_NOT_FOUND));
-    }
-
-    @Override
-    public boolean existsByNickname(String nickname) {
-        return memberRepositoryPort.existsByNickname(nickname);
     }
 }

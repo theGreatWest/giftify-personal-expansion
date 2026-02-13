@@ -49,14 +49,4 @@ public class MemberRepositoryAdapter implements MemberRepositoryPort {
         return memberJpaRepository.findByPhone(phone)
                 .map(memberMapper::toDomain);
     }
-
-    @Override
-    public boolean existsByEmail(String email) {
-        return memberJpaRepository.existsByEmail(email);
-    }
-
-    @Override
-    public boolean existsByNickname(String nickname) {
-        return memberJpaRepository.existsByNickname(nickname);
-    }
 }
